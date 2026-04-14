@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  
+  --color-gold: #C5A059;
+  --color-gold-light: #F9F6EE;
+  --color-dark-bg: #050505;
+  --color-dark-card: #0A0A0A;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white font-sans antialiased selection:bg-gold selection:text-dark-bg;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold;
+  }
+
+  .hero-heading {
+    @apply text-[clamp(3rem,10vw,82px)] leading-[0.9] font-normal tracking-[-0.04em];
+  }
+
+  .hero-tag {
+    @apply text-[11px] tracking-[0.4em] text-gold uppercase font-semibold mb-5;
+  }
+}
