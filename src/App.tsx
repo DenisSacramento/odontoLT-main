@@ -22,8 +22,16 @@ import {
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import harmonizacaoImg from './assets/harmonizacao.png';
+import otomodelacao2Img from './assets/otomodelacao2.png';
+import implanteImg from './assets/implante.png';
+import profEspecialistaImg from './assets/prof-especialista.jpg';
+import otomodelacaoImg from './assets/otomodelacao.png';
+import draLaisTorresImg from './assets/dra-lais-torres.png';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const IMAGE_VERSION = '1.0.0';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -131,7 +139,7 @@ export default function App() {
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2070" 
+            src={`https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2070&v=${IMAGE_VERSION}`}
             alt="Consultório Odontológico de Luxo"
             className="hero-bg w-full h-full object-cover opacity-30 scale-110"
             referrerPolicy="no-referrer"
@@ -167,10 +175,10 @@ export default function App() {
 
           <div ref={bentoRef} className="bento-grid grid grid-cols-2 gap-4">
             {[
-              { title: "Harmonização", desc: "Pós-graduação e olhar refinado.", img: "/harmonizacao.png" },
-              { title: "Otomodelação", desc: "Referência nacional sem cortes.", img: "/otomodelacao2.png" },
-              { title: "Implantes", desc: "Precisão digital e tecnologia.", img: "/implante.png" },
-              { title: "Autoridade", desc: "Professora e Especialista.", img: "/prof-especialista.jpg" }
+              { title: "Harmonização", desc: "Pós-graduação e olhar refinado.", img: harmonizacaoImg },
+              { title: "Otomodelação", desc: "Referência nacional sem cortes.", img: otomodelacao2Img },
+              { title: "Implantes", desc: "Precisão digital e tecnologia.", img: implanteImg },
+              { title: "Autoridade", desc: "Professora e Especialista.", img: profEspecialistaImg }
             ].map((item, idx) => (
               <div key={idx} className="bento-item glass p-6 rounded-2xl flex flex-col justify-between hover:border-gold/50 transition-colors group">
                 <div>
@@ -178,7 +186,7 @@ export default function App() {
                   <div className="bento-desc text-[12px] text-white/50 leading-tight">{item.desc}</div>
                 </div>
                 <div className="mt-4 aspect-video rounded-lg overflow-hidden relative">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500" referrerPolicy="no-referrer" />
+                  <img src={item.img} alt={item.title} loading="lazy" decoding="async" className="w-full h-full object-cover opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500" referrerPolicy="no-referrer" />
                 </div>
               </div>
             ))}
@@ -220,12 +228,14 @@ export default function App() {
           {/* Bento Item 1 */}
           <div className="bento-item md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden relative group">
             <img 
-              src="/otomodelacao.png" 
+              src={otomodelacaoImg} 
               alt="Pioneirismo em Otomodelação"
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               referrerPolicy="no-referrer"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070";
+                (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070&v=${IMAGE_VERSION}`;
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent" />
@@ -323,13 +333,15 @@ export default function App() {
           <div className="relative">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-white/5 bg-black">
               <img 
-                src="/dra-lais-torres.png" 
+                src={draLaisTorresImg} 
                 alt="Dra. Laís Torres - Especialista em Harmonização Orofacial"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   // Fallback if image is not uploaded yet
-                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=2070";
+                  (e.target as HTMLImageElement).src = `https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=2070&v=${IMAGE_VERSION}`;
                 }}
               />
               {/* Sparkle Icons from the provided image */}
